@@ -1,0 +1,11 @@
+# Component Architecture Rules
+- Strictly follow the project folder structure inside `/components`.
+- Never create or leave section files directly in `/components/home/` or `/components/common/` if a dedicated folder exists.
+- Home page sections must be placed strictly inside their respective subfolders:
+  - Hero -> `components/home/heroSection/`
+  - Categories -> `components/home/category/`
+  - Offers & Banners -> `components/home/offers/`
+  - Featured & Testimonials -> `components/home/theBest/`
+- Generic shared layout components belong to `components/common/`, while standalone global sections like Footer have their own folder `components/footer/`.
+- Always update relative imports when moving or generating components.
+

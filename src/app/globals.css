@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+  --primary-teal: #0D5C58;
+  --primary-teal-hover: #0A4A47;
+  --primary-teal-light: #E6F4F1;
+  --accent-emerald: #10B981;
+  --accent-emerald-light: #D1FAE5;
+  --accent-orange: #F97316;
+  --accent-orange-light: #FFEDD5;
+  --bg-page: #F8FAF9;
+  --bg-card: #FFFFFF;
+  --border-light: #E5E7EB;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Cairo', var(--font-cairo), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Touch: يلغي تأخير الضغطة المزدوجة (double-tap zoom) على كل العناصر القابلة للضغط */
+a,
+button,
+summary,
+label,
+select,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
