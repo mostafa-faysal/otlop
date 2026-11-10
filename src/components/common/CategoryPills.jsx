@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { storesService } from "@/services/stores.service";
 
-export default function CategoryPills({ activeCategory, onSelect }) {
+function CategoryPillsContent({ activeCategory, onSelect }) {
   const searchParams = useSearchParams();
   const currentCategory =
     activeCategory !== undefined ? activeCategory : searchParams.get("category") || "";
@@ -98,5 +98,13 @@ export default function CategoryPills({ activeCategory, onSelect }) {
         })}
       </div>
     </div>
+  );
+}
+
+export default function CategoryPills(props) {
+  return (
+    <Suspense fallback={null}>
+      <CategoryPillsContent {...props} />
+    </Suspense>
   );
 }

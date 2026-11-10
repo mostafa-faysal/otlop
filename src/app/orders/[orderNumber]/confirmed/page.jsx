@@ -1,11 +1,11 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use, useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { reviewsService } from "@/services/reviews.service";
 
-export default function OrderConfirmedPage({ params }) {
+function OrderConfirmedContent({ params }) {
   const resolvedParams = use(params);
   const orderNumber = resolvedParams.orderNumber;
   const searchParams = useSearchParams();
@@ -217,5 +217,22 @@ export default function OrderConfirmedPage({ params }) {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OrderConfirmedPage({ params }) {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
+          <div className="text-center space-y-3">
+            <div className="w-10 h-10 border-4 border-[#0D5C58] border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-xs font-bold text-gray-600">جاري تحميل بيانات الطلب...</p>
+          </div>
+        </div>
+      }
+    >
+      <OrderConfirmedContent params={params} />
+    </Suspense>
   );
 }

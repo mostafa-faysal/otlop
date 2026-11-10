@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
@@ -8,7 +8,7 @@ import { storesService } from "@/services/stores.service";
 import { ordersService } from "@/services/orders.service";
 import { adminService } from "@/services/admin.service";
 
-export default function MerchantFinancePage() {
+function MerchantFinanceContent() {
   const searchParams = useSearchParams();
   const { user } = useAuthStore();
 
@@ -476,5 +476,22 @@ export default function MerchantFinancePage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function MerchantFinancePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
+          <div className="text-center space-y-3">
+            <div className="w-10 h-10 border-4 border-[#0D5C58] border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-xs font-bold text-gray-600">جاري تحميل البيانات المالية...</p>
+          </div>
+        </div>
+      }
+    >
+      <MerchantFinanceContent />
+    </Suspense>
   );
 }
